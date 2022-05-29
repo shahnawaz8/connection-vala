@@ -30,6 +30,29 @@ export const JobPost = ()=>{
         });
       }
 
+      const handlesubmit = (e)=>{
+          e.preventDefault();
+            console.log(formValue)
+            const obj1 = {
+                "job_title":"Developer",
+                "job_detail":"this is a front end job",
+                "gender":"male",
+                "Age":24,
+                "location":"Delhi",
+                "workplace_policy":"t&c",
+                "offered_amount":"4lpa",
+               "Employement_type":"full-time",
+               "experienced":"1-3 year",
+               "job_opening":20,
+               "About_company":"2002 stablished year",
+               "Company_name":"tcs"
+            
+            
+            }
+            axios.post("http://localhost:4000/postjobs",formValue)
+            .then((res)=>console.log(res))
+            .catch((err)=>console.log(err));
+      }
 
 console.log(formValue)
     return (
@@ -37,7 +60,7 @@ console.log(formValue)
         <h2 className='heading'>Create Jobs</h2>
         <div className='container'>
             
-        <form action="">
+        <form action="" onSubmit={handlesubmit}>
             <label>Job Title</label>
             <input className="inputbox"
              type="text"
