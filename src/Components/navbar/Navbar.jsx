@@ -12,18 +12,18 @@ export const Navbar = ()=>{
 
     const username =  useSelector((store)=>store.username);
     console.log(isAuthenticated)
-    // useEffect(()=>{
-    //     let weatherKey ="bceb8ddaad70cd9238fe78ba73b4a210";
-    //     getLocation()
-    //     function getLocation() {
-    //         if (navigator.geolocation) {
-    //           navigator.geolocation.getCurrentPosition(showPosition);
-    //         }
-    //     }
-    //     function showPosition(position) {
-    //         axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${weatherKey}`).then((res)=>setCity(res.data.name))
-    //     }
-    // },[])
+    useEffect(()=>{
+        let weatherKey ="bceb8ddaad70cd9238fe78ba73b4a210";
+        getLocation()
+        function getLocation() {
+            if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(showPosition);
+            }
+        }
+        function showPosition(position) {
+            axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${weatherKey}`).then((res)=>setCity(res.data.name))
+        }
+    },[])
     return(
         <>
             <header>
