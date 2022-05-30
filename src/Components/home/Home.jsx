@@ -8,7 +8,7 @@ export const Home=()=>{
     const [data,setdata]=useState([])
     const navigate = useNavigate();
     const getdata=()=>{
-        axios.get("http://localhost:4000/postjobs")
+        axios.get("https://connection-vala-jobs.herokuapp.com/postjobs")
         .then((res)=>{
             setdata(res.data)
         })
