@@ -44,10 +44,10 @@ export default function SignIn() {
       email: data.get('email'),
       password: data.get('password'),
     };
-    axios.post("http://localhost:5000/api/user/login",userdata)
+    axios.post("https://connection-vala.herokuapp.com/api/user/login",userdata)
     .then((res)=>{console.log(res.data)
       // dispatch(login({isAuthenticated:true,token:res.data.token}));
-      fetch("http://localhost:5000/api/user/loggeduser",{
+      fetch("https://connection-vala.herokuapp.com/api/user/loggeduser",{
                 method:"GET",
                 headers:{
                     "Content-Type":"application/json",
