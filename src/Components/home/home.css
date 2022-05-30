@@ -35,7 +35,7 @@
     border-radius:5px;
 }
 .home-container>div{
-    border: 1px solid red;
+    border: 1px solid whitesmoke;
     border-radius: 10px;
     text-align: left;
 }
@@ -50,7 +50,6 @@
     font-weight: bold;
 }
 .tag{
-    border: 1px solid red;
     height: 30px;
     display: flex;
     flex-direction: row;
