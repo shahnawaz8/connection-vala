@@ -1,4 +1,4 @@
 import { createStore} from "redux";
 import { reducer } from "./redux/reducer";
 
-export const store = createStore(reducer,{isAuthenticated:true,token:""});
+export const store = createStore(reducer,{isAuthenticated:false,token:""});

@@ -2,32 +2,51 @@ import { useState } from 'react'
 import logo from './logo.svg'
 import './App.css'
 import { useSelector } from 'react-redux'
-import { Route, Router, Routes } from 'react-router-dom'
+import { Navigate, Route, Router, Routes } from 'react-router-dom'
 
 import { Navbar } from './Components/navbar/Navbar';
 import SignIn from './Components/login/SignIn'
 
 import { JobPost } from './Components/jobPost/JobPost'
 import { JobsShow } from './Components/jobshow/jobshow'
+import { Home } from './Components/home/Home'
 
 function App() {
   const [count, setCount] = useState(0)
   const loading =  useSelector((store)=>store.loading);
-  console.log(loading)
+  const isAuthenticated = useSelector((store)=>store.isAuthenticated);
+  console.log(isAuthenticated)
+
+
+  const PrivateRoute = ({isAuthenticated,children}) =>{
+    return isAuthenticated? children :<Navigate to={'/login'}/>
+  }
   return (
 
     <div className="App">
   
 
           <Navbar/>
-
+<div style={{marginTop:"100px"}}>
         <Routes>
-          <Route path='/' element={"home"}/>
+          <Route path={"/"} element={
+            <PrivateRoute isAuthenticated={isAuthenticated}>
+
+              <Home/>
+            </PrivateRoute>
+          
+          }/>
           <Route path='/login' element={<SignIn/>}/>
-          <Route path="/jobPost" element={<JobPost/>}/>
+          <Route path="/jobpost" element={
+          <PrivateRoute isAuthenticated={isAuthenticated}>
+            <JobPost/>
+        </PrivateRoute>
+          }/>
 
           <Route path="/jobshow" element={<JobsShow/>}/>
         </Routes>
+
+</div>
     </div>
   )
 }

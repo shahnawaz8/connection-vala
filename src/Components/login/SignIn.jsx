@@ -12,6 +12,11 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { login } from '../../redux/action';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 function Copyright(props) {
   return (
@@ -29,15 +34,38 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn() {
+  const dispatch =  useDispatch()
+  const navigate = useNavigate()
+  const [profile,setProfile] = useState({});
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
+    const userdata = {
       email: data.get('email'),
       password: data.get('password'),
-    });
-  };
+    };
+    axios.post("http://localhost:5000/api/user/login",userdata)
+    .then((res)=>{console.log(res.data)
+      // dispatch(login({isAuthenticated:true,token:res.data.token}));
+      fetch("http://localhost:5000/api/user/loggeduser",{
+                method:"GET",
+                headers:{
+                    "Content-Type":"application/json",
+                    Authorization: `Bearer ${res.data.token}`
+                }                    
+            })
+            .then((res)=>res.json())
+            .then((res)=>{setProfile(res.user)
+            console.log(res.user.name)
+            dispatch(login({isAuthenticated:true,username:res.user.name}))
+            // console.log(profile);
 
+            })
+            .catch((err)=>console.log(err));
+      navigate("/");
+    })
+    .catch((err)=>console.log(err));
+  };
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
