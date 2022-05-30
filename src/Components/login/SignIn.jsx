@@ -59,10 +59,11 @@ export default function SignIn() {
             console.log(res.user.name)
             dispatch(login({isAuthenticated:true,username:res.user.name}))
             // console.log(profile);
+             navigate("/");
 
             })
             .catch((err)=>console.log(err));
-      navigate("/");
+      
     })
     .catch((err)=>console.log(err));
   };
