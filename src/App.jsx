@@ -10,6 +10,7 @@ import SignIn from './Components/login/SignIn'
 import { JobPost } from './Components/jobPost/JobPost'
 import { JobsShow } from './Components/jobshow/jobshow'
 import { Home } from './Components/home/Home'
+import SignUp from './Components/login/SingUp'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -37,10 +38,12 @@ function App() {
           
           }/>
           <Route path='/login' element={<SignIn/>}/>
+          <Route path='/register' element={<SignUp/>}/>
+          
           <Route path="/jobpost" element={
           <PrivateRoute isAuthenticated={isAuthenticated}>
             <JobPost/>
-        </PrivateRoute>
+          </PrivateRoute>
           }/>
 
           <Route path="/jobshow" element={<JobsShow/>}/>
