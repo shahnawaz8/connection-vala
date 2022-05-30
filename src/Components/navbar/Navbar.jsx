@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { logout } from '../../redux/action'
-import './Navbar.css'
+import './navbar.css'
 export const Navbar = ()=>{
     const navigate = useNavigate()
     const [city , setCity] = useState("Delhi");
