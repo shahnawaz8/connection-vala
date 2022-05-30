@@ -49,7 +49,7 @@ export const JobPost = ()=>{
             
             
             }
-            axios.post("http://localhost:4000/postjobs",formValue)
+            axios.post("https://connection-vala-jobs.herokuapp.com/postjobs",formValue)
             .then((res)=>console.log(res))
             .catch((err)=>console.log(err));
       }
